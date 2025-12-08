@@ -20,6 +20,7 @@ def funcion_recursiva(parametors):
 # Ejemplo:
 #   5! = 5 * 4 * 3 * 2 * 1 = 120
 # -----------------------------------------------------------
+
 def factorial(n):
     # Caso base
     if n == 0:
