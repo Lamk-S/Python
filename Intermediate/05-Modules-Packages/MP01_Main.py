@@ -5,8 +5,8 @@ Programación modular
 # -----------------------------------------------------------
 # 1. Importar funciones específicas
 # -----------------------------------------------------------
-# from Utilities import mensaje_bienvenida, calcular_edad, contar_vocales
-#
+# from MP01_MP01_Utilities import mensaje_bienvenida, calcular_edad, contar_vocales
+
 # print(mensaje_bienvenida("admin", "1234", "Lamk"))
 # calcular_edad()
 # contar_vocales()
@@ -14,19 +14,19 @@ Programación modular
 # -----------------------------------------------------------
 # 2. Importar todo el módulo
 # -----------------------------------------------------------
-# import Utilities
+# import MP01_Utilities
 #
-# print(Utilities.mensaje_bienvenida("admin", "1234", "Lamk"))
-# Utilities.calcular_edad()
-# Utilities.contar_vocales()
+# print(MP01_Utilities.mensaje_bienvenida("admin", "1234", "Lamk"))
+# MP01_Utilities.calcular_edad()
+# MP01_Utilities.contar_vocales()
 #
-# objeto = Utilities.MiClase("Lamk")
+# objeto = MP01_Utilities.MiClase("Lamk")
 # objeto.saludar()
 
 # -----------------------------------------------------------
 # 3. Importar con alias (recomendado en proyectos reales)
 # -----------------------------------------------------------
-# import Utilities as util
+# import MP01_Utilities as util
 
 # print(util.mensaje_bienvenida("admin", "1234", "Lamk"))
 # util.calcular_edad()
