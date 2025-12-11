@@ -5,7 +5,7 @@ import csv
 # ============================
 def extraer_datos_csv():
     contador = 0
-    with open('Intermediate\\05-Modules-Packages\\products.csv', encoding='utf-8') as archivo_csv:
+    with open('Intermediate\\05-Modules-Packages\\MP03_products.csv', encoding='utf-8') as archivo_csv:
         lector_csv = csv.reader(archivo_csv)
         # Iterar sobre las filas del archivo CSV
         for fila in lector_csv:
@@ -18,7 +18,7 @@ def extraer_datos_csv():
 #   Lectura de archivos TXT
 # ============================
 def extraer_datos_txt():
-    with open('Intermediate\\05-Modules-Packages\\information.txt', encoding='utf-8') as archivo_txt:
+    with open('Intermediate\\05-Modules-Packages\\MP03_information.txt', encoding='utf-8') as archivo_txt:
         contenido = archivo_txt.read()
         print(contenido)
 
@@ -35,7 +35,7 @@ def generar_archivo():
             ['004', 'Peras', '60'],
             ['005', 'Uvas', '80']            
         ]
-        with open('Intermediate\\05-Modules-Packages\\new_products.csv', mode='w', newline='') as file:
+        with open('Intermediate\\05-Modules-Packages\\MP03_new_products.csv', mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerows(data_to_write)
     except Exception as e:
