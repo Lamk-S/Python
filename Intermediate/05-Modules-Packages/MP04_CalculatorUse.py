@@ -20,10 +20,10 @@ práctico de uso dentro de la función main().
 # -----------------------------------------------------------
 # Importación de funciones desde el paquete Calculator
 # -----------------------------------------------------------
-from Calculator.Addition import sumar
-from Calculator.Subtraction import restar
-from Calculator.Multiplication import multiplicar
-from Calculator.Division import dividir
+from MP04_Calculator.Addition import sumar
+from MP04_Calculator.Subtraction import restar
+from MP04_Calculator.Multiplication import multiplicar
+from MP04_Calculator.Division import dividir
 
 # -----------------------------------------------------------
 # Función para solicitar y validar entrada numérica del usuario
@@ -47,7 +47,7 @@ def main():
         print(f"Suma: {a} + {b} = {sumar(a, b)}")
         print(f"Resta: {a} - {b} = {restar(a, b)}")
         print(f"Multiplicación: {a} * {b} = {multiplicar(a, b)}")
-        print(f"División: {a} / {b} = {dividir(a, b)}")
+        print(f"División: {a} / {b} = {round(dividir(a, b), 2)}")
     except (TypeError, ValueError) as error:
         print(f"Error: {error}")
 
