@@ -73,7 +73,7 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>60</y>
+      <y>30</y>
       <width>373</width>
       <height>26</height>
      </rect>
@@ -117,7 +117,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_2">
+   <widget class="QTextEdit" name="txtTipoCambio">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -127,7 +127,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="txtTipoCambio">
+   <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -150,8 +150,8 @@
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>230</y>
-      <width>121</width>
+      <y>250</y>
+      <width>431</width>
       <height>41</height>
      </rect>
     </property>
@@ -181,11 +181,11 @@ QPushButton:pressed {
      <string>Convertir</string>
     </property>
    </widget>
-   <widget class="QLabel" name="txtTipoCambio_2">
+   <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>290</y>
+      <y>330</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -204,7 +204,7 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>370</x>
-      <y>290</y>
+      <y>330</y>
       <width>151</width>
       <height>31</height>
      </rect>
