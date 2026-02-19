@@ -10,24 +10,25 @@
 </head>
 
 <body>
-    <h1 class="header">Productos</h1>
+    <div class="container">
+        <h1 class="header">Productos</h1>
 
-    <div class="product-list">
-        {% for product in products %}
-            <div class="card">
-                <div class="card-body">
-                    <img src="{% static product.image %}" alt="{{product.name}}">
-                    <h5 class="card-title">{{product.name}}</h5>
-                    <p class="card-text">{{product.description}}</p>
-                    <p class="card-text"><strong>$ {{product.price}}</strong></p>
-                    <a href="" class="btn">Ver Detalle</a>
+        <div class="product-list">
+            {% for product in products %}
+                <div class="card">
+                    <div class="card-body">
+                        <img src="{% static product.image %}" alt="{{product.name}}">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p class="card-text">{{product.description}}</p>
+                        <p class="card-text"><strong>$ {{product.price}}</strong></p>
+                        <a href="" class="btn">Ver Detalle</a>
+                    </div>
                 </div>
-            </div>
-        {% empty %}
-            <p>No hay productos disponibles.</p>
-        {% endfor %}
+            {% empty %}
+                <p>No hay productos disponibles.</p>
+            {% endfor %}
+        </div>
     </div>
-
 </body>
 
 </html>
