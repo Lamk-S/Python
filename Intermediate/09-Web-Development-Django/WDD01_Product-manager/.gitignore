@@ -1,0 +1,39 @@
+# 📄 .gitignore
+
+```gitignore
+# Entornos virtuales
+.venv/
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Base de datos
+db.sqlite3
+
+# Variables de entorno
+.env
+
+# Django
+staticfiles/
+media/
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos temporales
+*.swp
+*.swo
