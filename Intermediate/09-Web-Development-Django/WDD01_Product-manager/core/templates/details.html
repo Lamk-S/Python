@@ -1,1 +1,18 @@
-<p>Esta es la vista "details"</p>
+{% extends "base.html" %}
+{% block content %}
+<div class="detail-wrapper">
+    <div class="detail-card">
+        <div class="detail-image">
+            <img src="{{ products.image.url }}" alt="{{ products.name }}">
+        </div>
+
+        <div class="detail-info">
+            <h1 class="detail-title">{{ products.name }}</h1>
+            <p class="detail-description">{{ products.description }}</p>
+            <p class="detail-price">$ {{ products.price }}</p>
+
+            <a href="{% url 'index' %}" class="btn">Regresar a Productos</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
