@@ -38,21 +38,27 @@ WDD01_Product-manager/
 │
 ├── core/
 │   ├── templates/
-│   │   ├── index.html
-│   │   └── details.html
+│   │   ├── base.html
+│   │   ├── details.html
+│   │   └── index.html
 │   ├── static/
 │   │   ├── css/
-│   │   └── img/
-│   ├── views.py
-│   └── urls.py
+│   │   └── js/
+│   ├── admin.py
+│   ├── models.py
+│   ├── urls.py
+│   └── views.py
+│
+├── media/
+│   ├── products/
 │
 ├── product_manager/
 │   ├── settings.py
 │   └── urls.py
 │
 ├── manage.py
-├── requirements.txt
-└── README.md
+├── README.md
+└── requirements.txt
 ```
 
 ---
