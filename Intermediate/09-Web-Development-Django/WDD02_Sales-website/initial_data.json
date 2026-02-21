@@ -1,0 +1,369 @@
+[
+    {
+        "model": "core.customer",
+        "pk": 1,
+        "fields": {
+            "name": "Carlos Ramírez",
+            "email": "carlos.ramirez@example.com",
+            "phone": "987654321",
+            "address": "Av. Larco 123, Trujillo, Perú",
+            "state": true
+        }
+    },
+    {
+        "model": "core.customer",
+        "pk": 2,
+        "fields": {
+            "name": "María Fernández",
+            "email": "maria.fernandez@example.com",
+            "phone": "912345678",
+            "address": "Jr. Pizarro 456, Lima, Perú",
+            "state": true
+        }
+    },
+    {
+        "model": "core.customer",
+        "pk": 3,
+        "fields": {
+            "name": "Luis Gómez",
+            "email": "luis.gomez@example.com",
+            "phone": "998877665",
+            "address": "Calle Arequipa 789, Arequipa, Perú",
+            "state": true
+        }
+    },
+    {
+        "model": "core.customer",
+        "pk": 4,
+        "fields": {
+            "name": "Andrea Torres",
+            "email": "andrea.torres@example.com",
+            "phone": "955443322",
+            "address": "Av. España 321, Trujillo, Perú",
+            "state": true
+        }
+    },
+    {
+        "model": "core.customer",
+        "pk": 5,
+        "fields": {
+            "name": "Jorge Castillo",
+            "email": "jorge.castillo@example.com",
+            "phone": "933221144",
+            "address": "Av. Grau 654, Chiclayo, Perú",
+            "state": true
+        }
+    },
+
+    { "model": "core.category", "pk": 1, "fields": { "name": "Consolas" } },
+    { "model": "core.category", "pk": 2, "fields": { "name": "Laptops" } },
+    { "model": "core.category", "pk": 3, "fields": { "name": "PCs" } },
+    { "model": "core.category", "pk": 4, "fields": { "name": "Componentes" } },
+    { "model": "core.category", "pk": 5, "fields": { "name": "Accesorios" } },
+    { "model": "core.category", "pk": 6, "fields": { "name": "Periféricos" } },
+
+    {
+        "model": "core.product",
+        "pk": 1,
+        "fields": {
+            "name": "PlayStation 5 Slim",
+            "description": "Consola de última generación con SSD 1TB ultrarrápido, gráficos 4K, ray tracing avanzado y control DualSense con retroalimentación háptica inmersiva.",
+            "price": "2499.90",
+            "stock": 15,
+            "state": true,
+            "categories": [1]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 2,
+        "fields": {
+            "name": "Xbox Series X",
+            "description": "Consola potente con almacenamiento NVMe 1TB, resolución 4K nativa, soporte hasta 120 FPS y arquitectura optimizada para alto rendimiento.",
+            "price": "2399.90",
+            "stock": 12,
+            "state": true,
+            "categories": [1]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 3,
+        "fields": {
+            "name": "Nintendo Switch OLED",
+            "description": "Consola híbrida con pantalla OLED vibrante de 7 pulgadas, almacenamiento ampliable y múltiples modos de juego portátil y sobremesa.",
+            "price": "1599.90",
+            "stock": 20,
+            "state": true,
+            "categories": [1]
+        }
+    },
+
+    {
+        "model": "core.product",
+        "pk": 4,
+        "fields": {
+            "name": "Laptop Gamer RTX 4060",
+            "description": "Portátil gaming con RTX 4060, procesador Intel 13ª generación, 16GB RAM DDR5 y SSD NVMe de alto rendimiento.",
+            "price": "5899.90",
+            "stock": 8,
+            "state": true,
+            "categories": [2]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 5,
+        "fields": {
+            "name": "Laptop Ultrabook Ryzen 7",
+            "description": "Ultrabook ligera con Ryzen 7, batería de larga duración, 16GB RAM y diseño elegante ideal para productividad profesional.",
+            "price": "4299.90",
+            "stock": 10,
+            "state": true,
+            "categories": [2]
+        }
+    },
+
+    {
+        "model": "core.product",
+        "pk": 6,
+        "fields": {
+            "name": "PC Gamer Ryzen 5 + RTX 3060",
+            "description": "Equipo de escritorio para gaming exigente con RTX 3060 dedicada, 32GB RAM y sistema de refrigeración eficiente.",
+            "price": "4799.90",
+            "stock": 6,
+            "state": true,
+            "categories": [3]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 7,
+        "fields": {
+            "name": "PC Oficina Intel i5",
+            "description": "Computadora empresarial con Intel i5, 16GB RAM, SSD veloz y conectividad completa para tareas administrativas.",
+            "price": "2899.90",
+            "stock": 14,
+            "state": true,
+            "categories": [3]
+        }
+    },
+
+    {
+        "model": "core.product",
+        "pk": 8,
+        "fields": {
+            "name": "Tarjeta Gráfica RTX 4070",
+            "description": "GPU con 12GB GDDR6X, soporte ray tracing y DLSS, ideal para gaming avanzado y edición profesional.",
+            "price": "3299.90",
+            "stock": 9,
+            "state": true,
+            "categories": [4]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 9,
+        "fields": {
+            "name": "Procesador Ryzen 7 7800X3D",
+            "description": "Procesador de alto rendimiento con múltiples núcleos y tecnología 3D V-Cache optimizada para gaming competitivo.",
+            "price": "1899.90",
+            "stock": 11,
+            "state": true,
+            "categories": [4]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 10,
+        "fields": {
+            "name": "Memoria RAM 16GB DDR5",
+            "description": "Módulo DDR5 de alta frecuencia y baja latencia diseñado para mejorar velocidad y estabilidad del sistema.",
+            "price": "399.90",
+            "stock": 40,
+            "state": true,
+            "categories": [4]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 11,
+        "fields": {
+            "name": "SSD NVMe 1TB Gen4",
+            "description": "Unidad de estado sólido PCIe Gen4 con velocidades superiores de lectura y escritura para arranque rápido.",
+            "price": "499.90",
+            "stock": 35,
+            "state": true,
+            "categories": [4]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 12,
+        "fields": {
+            "name": "Monitor 27 165Hz",
+            "description": "Pantalla IPS QHD de 27 pulgadas con tasa de refresco 165Hz y tiempo de respuesta bajo.",
+            "price": "1199.90",
+            "stock": 18,
+            "state": true,
+            "categories": [6]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 13,
+        "fields": {
+            "name": "Teclado Mecánico RGB",
+            "description": "Teclado con switches duraderos, iluminación RGB configurable y estructura resistente para gaming intensivo.",
+            "price": "299.90",
+            "stock": 25,
+            "state": true,
+            "categories": [6]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 14,
+        "fields": {
+            "name": "Mouse Gamer 16000 DPI",
+            "description": "Mouse ergonómico con sensor óptico de alta precisión y DPI ajustable para máximo control competitivo.",
+            "price": "199.90",
+            "stock": 30,
+            "state": true,
+            "categories": [6]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 15,
+        "fields": {
+            "name": "Audífonos Gaming 7.1",
+            "description": "Auriculares con sonido envolvente virtual 7.1 y micrófono con cancelación de ruido.",
+            "price": "249.90",
+            "stock": 22,
+            "state": true,
+            "categories": [5]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 16,
+        "fields": {
+            "name": "Silla Gamer Ergonómica",
+            "description": "Silla reclinable con soporte lumbar ajustable y estructura robusta para largas jornadas.",
+            "price": "899.90",
+            "stock": 7,
+            "state": true,
+            "categories": [5]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 17,
+        "fields": {
+            "name": "Fuente 750W 80+ Gold",
+            "description": "Fuente modular certificada 80+ Gold con alta eficiencia energética y ventilación silenciosa.",
+            "price": "599.90",
+            "stock": 13,
+            "state": true,
+            "categories": [4]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 18,
+        "fields": {
+            "name": "Placa Madre B650",
+            "description": "Motherboard compatible con DDR5 y PCIe 4.0 diseñada para configuraciones modernas.",
+            "price": "799.90",
+            "stock": 16,
+            "state": true,
+            "categories": [4]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 19,
+        "fields": {
+            "name": "Webcam Full HD 1080p",
+            "description": "Cámara web 1080p con enfoque automático y micrófono integrado para videoconferencias profesionales.",
+            "price": "179.90",
+            "stock": 28,
+            "state": true,
+            "categories": [6]
+        }
+    },
+    {
+        "model": "core.product",
+        "pk": 20,
+        "fields": {
+            "name": "Control Inalámbrico Pro",
+            "description": "Control ergonómico compatible con múltiples plataformas y batería recargable de larga duración.",
+            "price": "259.90",
+            "stock": 19,
+            "state": true,
+            "categories": [5]
+        }
+    },
+
+    {
+        "model": "core.order",
+        "pk": 1,
+        "fields": {
+            "customer": 1,
+            "date": "2026-02-20T10:15:00Z",
+            "total": "2899.90",
+            "state": true
+        }
+    },
+    {
+        "model": "core.order",
+        "pk": 2,
+        "fields": {
+            "customer": 2,
+            "date": "2026-02-20T12:40:00Z",
+            "total": "6399.70",
+            "state": true
+        }
+    },
+    {
+        "model": "core.order",
+        "pk": 3,
+        "fields": {
+            "customer": 3,
+            "date": "2026-02-20T15:10:00Z",
+            "total": "1899.90",
+            "state": true
+        }
+    },
+    {
+        "model": "core.order",
+        "pk": 4,
+        "fields": {
+            "customer": 4,
+            "date": "2026-02-21T09:25:00Z",
+            "total": "499.90",
+            "state": true
+        }
+    },
+    {
+        "model": "core.order",
+        "pk": 5,
+        "fields": {
+            "customer": 5,
+            "date": "2026-02-21T11:50:00Z",
+            "total": "3179.60",
+            "state": true
+        }
+    },
+
+    { "model": "core.orderdetails", "pk": 1, "fields": { "order": 1, "product": 7, "quantity": 1, "unit_price": "2899.90", "state": true } },
+    { "model": "core.orderdetails", "pk": 2, "fields": { "order": 2, "product": 4, "quantity": 1, "unit_price": "5899.90", "state": true } },
+    { "model": "core.orderdetails", "pk": 3, "fields": { "order": 2, "product": 13, "quantity": 1, "unit_price": "299.90", "state": true } },
+    { "model": "core.orderdetails", "pk": 4, "fields": { "order": 2, "product": 14, "quantity": 1, "unit_price": "199.90", "state": true } },
+    { "model": "core.orderdetails", "pk": 5, "fields": { "order": 3, "product": 9, "quantity": 1, "unit_price": "1899.90", "state": true } },
+    { "model": "core.orderdetails", "pk": 6, "fields": { "order": 4, "product": 11, "quantity": 1, "unit_price": "499.90", "state": true } },
+    { "model": "core.orderdetails", "pk": 7, "fields": { "order": 5, "product": 1, "quantity": 1, "unit_price": "2499.90", "state": true } },
+    { "model": "core.orderdetails", "pk": 8, "fields": { "order": 5, "product": 15, "quantity": 2, "unit_price": "249.90", "state": true } },
+    { "model": "core.orderdetails", "pk": 9, "fields": { "order": 5, "product": 19, "quantity": 1, "unit_price": "179.90", "state": true } }
+]

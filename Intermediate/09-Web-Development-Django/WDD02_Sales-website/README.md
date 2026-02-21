@@ -31,6 +31,7 @@ python manage.py startapp core
 python manage.py makemigrations core
 python manage.py migrate
 python manage.py createsuperuser
+python manage.py loaddata initial_data.json
 python manage.py runserver
 ```
 
