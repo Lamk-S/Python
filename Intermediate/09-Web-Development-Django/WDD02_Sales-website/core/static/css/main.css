@@ -1,0 +1,16 @@
+.main-content {
+    padding-top: 5em;
+    padding-bottom: 8em;
+}
+
+.footer {
+    background: #343a40;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    margin-top: 5em;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
