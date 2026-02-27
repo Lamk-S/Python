@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Customer(models.Model):
     name = models.CharField(max_length=100)
@@ -9,6 +10,9 @@ class Customer(models.Model):
     
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('core:home')
 
 class Category(models.Model):
     name = models.CharField(max_length=100)

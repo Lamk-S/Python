@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="card-custom col-md-6 mx-auto">
+    <h4 class="mb-4 fw-semibold">Add New Customer</h4>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="d-flex justify-content-end gap-2 mt-3">
+            <a href="{% url 'core:home' %}" class="btn btn-secondary-custom">Back</a>
+            <button class="btn btn-primary-custom" type="submit">Save</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

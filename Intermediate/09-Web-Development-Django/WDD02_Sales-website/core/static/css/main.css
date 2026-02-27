@@ -1,16 +1,129 @@
-.main-content {
-    padding-top: 5em;
-    padding-bottom: 8em;
+/* Paleta de colores */
+
+:root {
+    --primary: #191970;           /* Midnight Blue */
+    --primary-dark: #12124f;      /* Más profundo */
+    --primary-light: #2e2e9e;     /* Versión más viva */
+
+    --neutral: #ECEFF1;           /* Fondo principal */
+    --neutral-dark: #d8dde0;      /* Gris derivado */
+    --neutral-light: #f8fafb;     /* Blanco con matiz frío */
+
+    --text-main: #1a1a1a;
+    --text-muted: #5f6b73;
 }
 
-.footer {
-    background: #343a40;
+/* Global */
+
+body {
+    background-color: var(--neutral);
+    color: var(--text-main);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.main-content {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+/* Navbar */
+
+.navbar {
+    background-color: var(--primary) !important;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.nav-link {
+    color: var(--neutral-light) !important;
+    transition: 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #ffffff !important;
+    transform: translateY(-1px);
+}
+
+/* Botones */
+
+.btn-primary-custom {
+    background-color: var(--primary);
+    border: none;
     color: white;
+    transition: 0.3s ease;
+}
+
+.btn-primary-custom:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-secondary-custom {
+    background-color: var(--neutral-dark);
+    border: none;
+    color: var(--primary);
+    transition: 0.3s ease;
+}
+
+.btn-secondary-custom:hover {
+    background-color: #c9d0d4;
+}
+
+/* Tarjetas */
+
+.card-custom {
+    background: white;
+    border: 1px solid var(--neutral-dark);
+    border-radius: 12px;
+    padding: 1.2rem;
+    transition: 0.3s ease;
+}
+
+.card-custom:hover {
+    box-shadow: 0 8px 20px rgba(25, 25, 112, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Links */
+
+a {
+    text-decoration: none;
+}
+
+.link-action {
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.link-action:hover {
+    color: var(--primary-dark);
+}
+
+/* Footer */
+
+.footer {
+    background: var(--primary);
+    color: var(--neutral-light);
     text-align: center;
-    padding: 1em;
-    margin-top: 5em;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    padding: 1rem;
+    margin-top: 5rem;
+    font-size: 0.9rem;
+}
+
+/* Formularios */
+
+form input,
+form textarea,
+form select {
+    border-radius: 8px !important;
+    border: 1px solid var(--neutral-dark) !important;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 0.15rem rgba(25, 25, 112, 0.2) !important;
 }

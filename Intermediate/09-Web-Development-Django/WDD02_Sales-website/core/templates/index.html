@@ -1,10 +1,20 @@
 {% extends 'base/base.html' %}
-
 {% block content %}
-    <h2>Listado de Clientes</h2>
-    {% for customer in object_list %}
-        <div class="mb-3">
-            {{customer.name}}
-        </div>
-    {% endfor %}
-{% endblock content %}
+<h2 class="mb-4 fw-semibold">Customer List</h2>
+
+{% for customer in object_list %}
+<div class="card-custom mb-3 d-flex justify-content-between align-items-center">
+    <div>
+        <strong>{{ customer.name }}</strong><br>
+        <small class="text-muted">{{ customer.email }}</small>
+    </div>
+    <div class="d-flex gap-3">
+        <a class="link-action" href="{% url 'core:customer_detail' customer.pk %}">View</a>
+        <a class="link-action" href="#">Edit</a>
+        <a class="link-action text-danger" href="#">Delete</a>
+    </div>
+</div>
+{% empty %}
+<p class="text-muted">No customers registered yet.</p>
+{% endfor %}
+{% endblock %}

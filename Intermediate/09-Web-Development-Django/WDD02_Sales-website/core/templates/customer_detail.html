@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="card-custom col-md-8 mx-auto">
+    <h4 class="mb-3 fw-semibold">{{ customer.name }}</h4>
+
+    <p><strong>Email:</strong> {{ customer.email }}</p>
+    <p><strong>Phone:</strong> {{ customer.phone }}</p>
+    <p><strong>Address:</strong> {{ customer.address }}</p>
+
+    <hr>
+
+    <div class="d-flex gap-3">
+        <a href="{% url 'core:home' %}" class="btn btn-secondary-custom">Back</a>
+        <a href="#" class="btn btn-primary-custom">Edit</a>
+        <a href="#" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+{% endblock %}
