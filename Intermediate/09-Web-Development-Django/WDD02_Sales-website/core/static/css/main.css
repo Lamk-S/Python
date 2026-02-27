@@ -1,129 +1,135 @@
 /* Paleta de colores */
 
 :root {
-    --primary: #191970;           /* Midnight Blue */
-    --primary-dark: #12124f;      /* Más profundo */
-    --primary-light: #2e2e9e;     /* Versión más viva */
-
-    --neutral: #ECEFF1;           /* Fondo principal */
-    --neutral-dark: #d8dde0;      /* Gris derivado */
-    --neutral-light: #f8fafb;     /* Blanco con matiz frío */
-
-    --text-main: #1a1a1a;
-    --text-muted: #5f6b73;
+    /* Colores Fijos Solicitados */
+    --primary-dark: #191970;        
+    --bg-light: #ECEFF1;            
+    
+    /* Tonos Derivados */
+    --primary-hover: #2929a3;       
+    --text-main: #11114e;           
+    --border-light: #cfd8dc;        
+    --white: #ffffff;
 }
 
-/* Global */
-
+/* Forzar el fondo de la página */
 body {
-    background-color: var(--neutral);
+    background-color: var(--bg-light) !important;
     color: var(--text-main);
-    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
+/* --- Navbar --- */
+.custom-navbar {
+    background-color: var(--primary-dark) !important;
+}
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+    color: var(--white) !important;
+}
+.custom-navbar .nav-link:hover {
+    color: var(--bg-light) !important;
+    opacity: 0.8;
+}
+.custom-navbar .navbar-toggler {
+    border-color: rgba(255,255,255,0.5);
+}
+.custom-navbar .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* --- Contenido Principal --- */
 .main-content {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 6em;
+    padding-bottom: 8em;
 }
 
-/* Navbar */
-
-.navbar {
-    background-color: var(--primary) !important;
+/* --- Tarjetas (Cards) --- */
+.pro-card {
+    background-color: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(25, 25, 112, 0.08);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
 }
 
-.navbar-brand {
-    font-weight: 600;
-    letter-spacing: 0.5px;
+/* --- Utilidades de Texto --- */
+.text-primary-custom {
+    color: var(--primary-dark) !important;
 }
 
-.nav-link {
-    color: var(--neutral-light) !important;
-    transition: 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #ffffff !important;
-    transform: translateY(-1px);
-}
-
-/* Botones */
-
+/* --- Botones --- */
 .btn-primary-custom {
-    background-color: var(--primary);
-    border: none;
-    color: white;
-    transition: 0.3s ease;
+    background-color: var(--primary-dark) !important;
+    color: var(--white) !important;
+    border: 1px solid var(--primary-dark) !important;
+    transition: all 0.3s ease;
 }
-
 .btn-primary-custom:hover {
-    background-color: var(--primary-dark);
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
 }
 
-.btn-secondary-custom {
-    background-color: var(--neutral-dark);
-    border: none;
-    color: var(--primary);
-    transition: 0.3s ease;
+.btn-outline-custom {
+    color: var(--primary-dark) !important;
+    border: 1px solid var(--primary-dark) !important;
+    background-color: transparent !important;
+    transition: all 0.3s ease;
+}
+.btn-outline-custom:hover {
+    background-color: var(--primary-dark) !important;
+    color: var(--white) !important;
 }
 
-.btn-secondary-custom:hover {
-    background-color: #c9d0d4;
-}
-
-/* Tarjetas */
-
-.card-custom {
-    background: white;
-    border: 1px solid var(--neutral-dark);
-    border-radius: 12px;
-    padding: 1.2rem;
-    transition: 0.3s ease;
-}
-
-.card-custom:hover {
-    box-shadow: 0 8px 20px rgba(25, 25, 112, 0.15);
-    transform: translateY(-2px);
-}
-
-/* Links */
-
-a {
+/* --- Enlaces --- */
+a.custom-link {
+    color: var(--primary-dark);
     text-decoration: none;
-}
-
-.link-action {
-    color: var(--primary);
     font-weight: 500;
 }
-
-.link-action:hover {
-    color: var(--primary-dark);
+a.custom-link:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
 }
 
-/* Footer */
+/* --- Formularios --- */
+form p {
+    margin-bottom: 1.2rem;
+}
+form input[type="text"], 
+form input[type="email"], 
+form textarea {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid var(--border-light);
+    border-radius: 5px;
+    background-color: var(--white);
+    color: var(--text-main);
+}
 
+form textarea {
+    min-height: 30px;
+    max-height: 90px;
+}
+
+form input[type="text"]:focus, 
+form input[type="email"]:focus, 
+form textarea:focus {
+    outline: none;
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 3px rgba(25, 25, 112, 0.2);
+}
+
+/* --- Footer --- */
 .footer {
-    background: var(--primary);
-    color: var(--neutral-light);
+    background-color: var(--primary-dark) !important;
+    color: var(--bg-light) !important;
     text-align: center;
-    padding: 1rem;
-    margin-top: 5rem;
-    font-size: 0.9rem;
-}
-
-/* Formularios */
-
-form input,
-form textarea,
-form select {
-    border-radius: 8px !important;
-    border: 1px solid var(--neutral-dark) !important;
-}
-
-form input:focus,
-form textarea:focus,
-form select:focus {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 0 0.15rem rgba(25, 25, 112, 0.2) !important;
+    padding: 1.2em;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
 }
