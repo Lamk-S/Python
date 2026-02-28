@@ -14,8 +14,8 @@
                 </div>
                 <div class="d-flex gap-3">
                     <a class="custom-link" href="{% url 'core:customer_detail' customer.pk %}">Visualizar</a>
-                    <a class="custom-link" href="">Editar</a>
-                    <a class="text-danger text-decoration-none" href="">Eliminar</a>
+                    <a class="custom-link" href="{% url 'core:customer_update' customer.pk %}">Editar</a>
+                    <a class="text-danger text-decoration-none" href="{% url 'core:customer_delete' customer.pk %}">Eliminar</a>
                 </div>
             </div>
         {% empty %}

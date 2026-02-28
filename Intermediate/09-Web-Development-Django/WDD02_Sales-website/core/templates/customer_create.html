@@ -4,7 +4,11 @@
         <div class="col-md-8 col-lg-6">
             <div class="pro-card">
                 <h2 class="mb-4 text-primary-custom fw-bold">
-                    Añadir Cliente
+                    {% if not edit %}
+                        Añadir Cliente
+                    {% else %}
+                        Editar CLiente
+                    {% endif %}
                 </h2>
                 <form method="post">
                     {% csrf_token %}
