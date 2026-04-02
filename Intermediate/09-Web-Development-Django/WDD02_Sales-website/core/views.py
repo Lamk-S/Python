@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 class HomeView(ListView):
     model = Customer
     template_name = "index.html"
+    paginate_by = 5
     
 class CustomerCreateView(CreateView):
     model = Customer
