@@ -1,4 +1,8 @@
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,10 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0cl^sd3)z#lfw0bm+n&lu7v%&$lik5%rri+o89y%m2qe$mu(9&'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = []
 
@@ -107,4 +111,4 @@ STATIC_URL = 'static/'
 
 # Configuración de redirección tras el login/logout
 LOGIN_REDIRECT_URL='/' # Redirige después al inicio de sesión
-LOGOUT_REDIRECT_URL='accounts/login' # Redirige después de cerrar sesión
+LOGOUT_REDIRECT_URL='login' # Redirige después de cerrar sesión
