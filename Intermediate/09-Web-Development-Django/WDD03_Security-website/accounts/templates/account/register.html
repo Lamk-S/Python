@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="w-full max-w-md mx-auto">
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-extrabold text-slate-900">Crear cuenta</h2>
+            <p class="text-sm text-slate-500 mt-2">Únete a nuestra plataforma hoy</p>
+        </div>
+
+        <form method="POST" class="space-y-4">
+            {% csrf_token %}
+            <!-- El CSS global que añadimos se encargará de que esto se vea bien -->
+            <div class="space-y-4 text-sm font-medium text-slate-700">
+                {{ form.as_p }}
+            </div>
+            
+            <button type="submit" class="w-full bg-slate-900 text-white font-medium py-2.5 rounded-lg mt-6 hover:bg-slate-800 focus:ring-4 focus:ring-slate-900/20 transition-all duration-200">
+                Registrarse
+            </button>
+        </form>
+    </div>
+    <p class="text-center text-sm text-slate-600 mt-6">
+        ¿Ya tienes una cuenta? <a href="{% url 'login' %}" class="text-blue-600 font-medium hover:underline">Inicia sesión</a>
+    </p>
+</div>
+{% endblock %}
