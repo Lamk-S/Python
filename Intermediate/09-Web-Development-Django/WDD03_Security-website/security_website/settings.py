@@ -2,26 +2,21 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
+# Load environment variables
 load_dotenv()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
+# ======================
+# SECURITY
+# ======================
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'unsafe-secret-key')
 DEBUG = os.getenv("DEBUG", "True") == "True"
-
 ALLOWED_HOSTS = []
 
-
-# Application definition
-
+# ======================
+# APPLICATIONS
+# ======================
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -29,12 +24,62 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
+
+    # Local apps
+    'accounts.apps.AccountsConfig',
+
+    # Allauth
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
+SITE_ID = 1
+
+# ======================
+# AUTHENTICATION
+# ======================
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = 'login'
+
+# ======================
+# ALLAUTH CONFIG
+# ======================
+ACCOUNT_LOGIN_METHODS = {'email', 'username'}
+ACCOUNT_SIGNUP_FIELDS = [
+    'email*',
+    'username*',
+    'password1*',
+    'password2*'
+]
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = "none"  # cambiar a "mandatory" en producción
+
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_QUERY_EMAIL = True
+
+# Adapter personalizado (unificación por email)
+SOCIALACCOUNT_ADAPTER = 'accounts.adapter.MySocialAccountAdapter'
+
+# ======================
+# MIDDLEWARE
+# ======================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    # obligatorio para allauth
+    'allauth.account.middleware.AccountMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -42,15 +87,22 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# ======================
+# URLS
+# ======================
 ROOT_URLCONF = 'security_website.urls'
 
+# ======================
+# TEMPLATES
+# ======================
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                # requerido por allauth
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -61,10 +113,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'security_website.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
+# ======================
+# DATABASE
+# ======================
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -72,43 +123,29 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
-
+# ======================
+# PASSWORD VALIDATION
+# ======================
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/6.0/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
+# ======================
+# INTERNATIONALIZATION
+# ======================
+LANGUAGE_CODE = 'es'
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
-
+# ======================
+# STATIC FILES
+# ======================
 STATIC_URL = 'static/'
 
-# Configuración de redirección tras el login/logout
-LOGIN_REDIRECT_URL='/' # Redirige después al inicio de sesión
-LOGOUT_REDIRECT_URL='login' # Redirige después de cerrar sesión
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
