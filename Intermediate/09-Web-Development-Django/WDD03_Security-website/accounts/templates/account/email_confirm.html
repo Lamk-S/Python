@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="w-full max-w-md mx-auto">
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center">
+        <h2 class="text-2xl font-extrabold text-slate-900 mb-4">Confirmar Correo</h2>
+        
+        {% if confirmation %}
+            <p class="text-sm text-slate-500 mb-6">
+                Por favor, confirma que la dirección de correo electrónico <strong>{{ confirmation.email_address.email }}</strong> te pertenece.
+            </p>
+            
+            <form method="POST" action="{% url 'account_confirm_email' confirmation.key %}">
+                {% csrf_token %}
+                <button type="submit" class="w-full bg-blue-600 text-white font-medium py-2.5 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-600/20 transition-all duration-200">
+                    Confirmar mi cuenta
+                </button>
+            </form>
+        {% else %}
+            <!-- Si el link ya expiró o se usó -->
+            <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </div>
+            <p class="text-sm text-red-600 mb-6 font-medium">Este enlace de confirmación es inválido o ya ha expirado.</p>
+            <a href="{% url 'login' %}" class="text-blue-600 font-medium hover:underline text-sm">Volver al inicio</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

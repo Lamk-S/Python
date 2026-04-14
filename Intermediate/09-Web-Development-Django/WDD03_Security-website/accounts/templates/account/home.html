@@ -3,7 +3,6 @@
 {% block content %}
 <div class="max-w-4xl mx-auto w-full px-4">
     {% if user.is_authenticated %}
-        <!-- Header del Dashboard -->
         <div class="mb-8 flex items-center justify-between bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
             <div>
                 <h1 class="text-2xl font-bold text-slate-900">Hola, {{ user.username }} 👋</h1>
@@ -16,18 +15,19 @@
             </div>
         </div>
 
-        <!-- Grid de Tarjetas -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
                 <h3 class="font-semibold text-slate-800">Mi Perfil</h3>
                 <p class="text-sm text-slate-500 mt-2">Gestiona tu información personal y foto de perfil.</p>
                 <a href="#" class="inline-block mt-4 text-blue-600 text-sm font-medium hover:underline">Ver perfil &rarr;</a>
             </div>
+            
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                <h3 class="font-semibold text-slate-800">Seguridad</h3>
+                <h3 class="font-semibold text-slate-800">Seguridad (2FA)</h3>
                 <p class="text-sm text-slate-500 mt-2">Actualiza tu contraseña y activa el doble factor.</p>
-                <a href="#" class="inline-block mt-4 text-blue-600 text-sm font-medium hover:underline">Configurar &rarr;</a>
+                <a href="{% url 'mfa_index' %}" class="inline-block mt-4 text-blue-600 text-sm font-medium hover:underline">Configurar 2FA &rarr;</a>
             </div>
+            
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
                 <h3 class="font-semibold text-slate-800">Actividad</h3>
                 <p class="text-sm text-slate-500 mt-2">Revisa tus últimos inicios de sesión.</p>
@@ -36,7 +36,6 @@
         </div>
 
     {% else %}
-        <!-- Vista para usuarios no autenticados -->
         <div class="text-center bg-white p-12 rounded-2xl shadow-sm border border-slate-100 max-w-2xl mx-auto mt-10">
             <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>

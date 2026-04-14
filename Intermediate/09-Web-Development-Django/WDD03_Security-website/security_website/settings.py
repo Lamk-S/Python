@@ -14,6 +14,11 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'unsafe-secret-key')
 DEBUG = os.getenv("DEBUG", "True") == "True"
 ALLOWED_HOSTS = []
 
+# Cabeceras de seguridad básicas
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+
 # ======================
 # APPLICATIONS
 # ======================
@@ -28,16 +33,26 @@ INSTALLED_APPS = [
     # Local apps
     'accounts.apps.AccountsConfig',
 
-    # Allauth
+    # Allauth & MFA
     'django.contrib.sites',
-
     'allauth',
     'allauth.account',
+    'allauth.mfa', # ¡Nuevo! Activa el sistema 2FA de allauth
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    
+    # Crispy Forms (Tailwind)
+    'crispy_forms',
+    'crispy_tailwind',
 ]
 
 SITE_ID = 1
+
+# ======================
+# CRISPY FORMS CONFIG
+# ======================
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
 
 # ======================
 # AUTHENTICATION
@@ -62,13 +77,24 @@ ACCOUNT_SIGNUP_FIELDS = [
     'password2*'
 ]
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = "none"  # cambiar a "mandatory" en producción
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Forzamos verificación
 
 SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_QUERY_EMAIL = True
 
-# Adapter personalizado (unificación por email)
+# Adapter personalizado
 SOCIALACCOUNT_ADAPTER = 'accounts.adapter.MySocialAccountAdapter'
+
+# ======================
+# EMAIL SETTINGS (SMTP GMAIL)
+# ======================
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = f"Security Website <{EMAIL_HOST_USER}>"
 
 # ======================
 # MIDDLEWARE
@@ -76,15 +102,14 @@ SOCIALACCOUNT_ADAPTER = 'accounts.adapter.MySocialAccountAdapter'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-
-    # obligatorio para allauth
-    'allauth.account.middleware.AccountMiddleware',
-
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    # obligatorio para allauth
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 # ======================
@@ -102,7 +127,6 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                # requerido por allauth
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -145,7 +169,4 @@ USE_TZ = True
 # STATIC FILES
 # ======================
 STATIC_URL = 'static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
+STATICFILES_DIRS = [BASE_DIR / 'static']

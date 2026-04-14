@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto w-full px-4">
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">Gestión de Correos</h2>
+
+        {% if user.emailaddress_set.all %}
+            <form action="{% url 'account_email' %}" method="post">
+                {% csrf_token %}
+                <div class="space-y-3 mb-6">
+                    {% for emailaddress in user.emailaddress_set.all %}
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 border {% if emailaddress.primary %}border-blue-200 bg-blue-50{% else %}border-slate-200 bg-white{% endif %} rounded-xl gap-4">
+                            
+                            <div class="flex items-center gap-3">
+                                <input type="radio" id="email_radio_{{forloop.counter}}" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}" class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500 cursor-pointer">
+                                
+                                <label for="email_radio_{{forloop.counter}}" class="cursor-pointer">
+                                    <span class="font-medium text-slate-800 block sm:inline">{{ emailaddress.email }}</span>
+                                </label>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 sm:ml-auto pl-7 sm:pl-0">
+                                {% if emailaddress.verified %}
+                                    <span class="text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold uppercase tracking-wide">Verificado</span>
+                                {% else %}
+                                    <span class="text-xs bg-yellow-100 text-yellow-700 px-2.5 py-1 rounded-full font-semibold uppercase tracking-wide">Sin verificar</span>
+                                {% endif %}
+                                
+                                {% if emailaddress.primary %}
+                                    <span class="text-xs bg-blue-600 text-white px-2.5 py-1 rounded-full font-semibold uppercase tracking-wide">Principal</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="flex flex-wrap gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <button type="submit" name="action_primary" class="bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors">Hacer principal</button>
+                    <button type="submit" name="action_send" class="bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors">Reenviar verificación</button>
+                    <button type="submit" name="action_remove" class="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-100 transition-colors sm:ml-auto">Eliminar correo</button>
+                </div>
+            </form>
+        {% else %}
+            <p class="text-slate-500 mb-6">No tienes correos electrónicos configurados.</p>
+        {% endif %}
+
+        <hr class="border-slate-100 my-8">
+
+        <h3 class="font-bold text-slate-900 mb-4">Añadir nuevo correo</h3>
+        <form method="post" action="{% url 'account_email' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button name="action_add" type="submit" class="mt-4 bg-blue-600 text-white font-medium py-2.5 px-6 rounded-lg hover:bg-blue-700 transition-all">
+                Añadir correo
+            </button>
+        </form>
+    </div>
+    
+    <div class="mt-6">
+        <a href="{% url 'home' %}" class="text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors">&larr; Volver al Dashboard</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto w-full px-4">
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Tus Códigos de Recuperación</h2>
+        <p class="text-sm text-slate-500 mb-6">Guarda estos códigos en un lugar seguro (como un gestor de contraseñas). Solo podrás usarlos una vez cada uno.</p>
+        
+        <div class="grid grid-cols-2 gap-4 bg-slate-50 p-6 rounded-xl border border-slate-200 mb-8 font-mono text-sm">
+            {% for code in unused_codes %}
+                <div class="bg-white px-3 py-2 border border-slate-200 rounded text-center tracking-widest text-slate-800">
+                    {{ code }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="flex gap-4">
+            <a href="{% url 'mfa_generate_recovery_codes' %}" class="bg-slate-900 text-white px-6 py-2.5 rounded-lg hover:bg-slate-800 font-medium transition-colors text-sm">
+                Regenerar Códigos
+            </a>
+            <a href="{% url 'mfa_index' %}" class="text-slate-500 hover:text-slate-800 flex items-center text-sm font-medium">
+                Volver a Seguridad
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
