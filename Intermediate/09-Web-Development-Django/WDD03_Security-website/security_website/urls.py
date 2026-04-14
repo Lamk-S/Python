@@ -6,10 +6,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda request: redirect('home')),
 
-    # Allauth primero
+    # Allauth centraliza todo (Login, Social, MFA)
     path('accounts/', include('allauth.urls')),
-
-    # Luego apps
+    
+    # Vistas personalizadas de la app accounts
     path('accounts/', include('accounts.urls')),
 
     # Auth clásico
