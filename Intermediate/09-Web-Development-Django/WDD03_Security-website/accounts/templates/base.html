@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My App{% endblock %}</title>
+    <title>{% block title %}Lamk's{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/layout.css' %}">
@@ -20,15 +20,16 @@
             <!-- LEFT -->
             <div class="flex items-center gap-6">
                 <a href="{% url 'home' %}" class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">M</div>
-                    <span class="font-bold text-xl tracking-tight text-slate-900">MyApp</span>
+                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">L</div>
+                    <span class="font-bold text-xl tracking-tight text-slate-900">Lamk's</span>
                 </a>
             </div>
 
             <!-- RIGHT -->
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 relative">
                 {% if user.is_authenticated %}
-                    <div class="flex items-center gap-3 bg-slate-100 py-1.5 px-3 rounded-full border border-slate-200">
+                    
+                    <button id="user-menu-button" class="flex items-center gap-3 bg-slate-100 py-1.5 pl-3 pr-2 rounded-full border border-slate-200 hover:bg-slate-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                         {% if user.profile.avatar %}
                             <img src="{{ user.profile.avatar }}" class="w-7 h-7 rounded-full object-cover">
                         {% else %}
@@ -36,14 +37,52 @@
                                 {{ user.username|make_list|first|upper }}
                             </div>
                         {% endif %}
-                        <span class="text-sm font-medium text-slate-700 pr-1">{{ user.username }}</span>
+                        <span class="text-sm font-medium text-slate-700">{{ user.username }}</span>
+                        <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+
+                    <div id="user-dropdown-menu" class="hidden absolute right-0 top-12 mt-2 w-80 bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden z-50 transform origin-top-right transition-all">
+                        <div class="p-2 space-y-1">
+                            
+                            <div class="px-3 pt-3 pb-1 text-xs font-bold text-slate-400 uppercase tracking-wider">Perfil y Cuenta</div>
+                            
+                            <a href="{% url 'account_email' %}" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50 transition-colors">
+                                <p class="text-sm font-semibold text-slate-800">Correos Electrónicos</p>
+                                <p class="text-xs text-slate-500 mt-0.5">Administra tus direcciones y verifica nuevos correos.</p>
+                            </a>
+                            
+                            <a href="{% url 'socialaccount_connections' %}" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50 transition-colors">
+                                <p class="text-sm font-semibold text-slate-800">Cuentas Vinculadas</p>
+                                <p class="text-xs text-slate-500 mt-0.5">Conecta o desconecta tu acceso mediante Google.</p>
+                            </a>
+
+                            <div class="h-px bg-slate-100 my-2"></div>
+
+                            <div class="px-3 pt-2 pb-1 text-xs font-bold text-slate-400 uppercase tracking-wider">Seguridad</div>
+                            
+                            <a href="{% url 'account_change_password' %}" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50 transition-colors">
+                                <p class="text-sm font-semibold text-slate-800">Cambiar Contraseña</p>
+                                <p class="text-xs text-slate-500 mt-0.5">Actualiza tu clave de acceso para mayor protección.</p>
+                            </a>
+                            
+                            <a href="{% url 'mfa_index' %}" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50 transition-colors">
+                                <p class="text-sm font-semibold text-slate-800">Autenticación 2FA</p>
+                                <p class="text-xs text-slate-500 mt-0.5">Gestiona tu app de seguridad y códigos de respaldo.</p>
+                            </a>
+
+                            <div class="h-px bg-slate-100 my-2"></div>
+
+                            <form action="{% url 'account_logout' %}" method="POST" class="m-0 p-1">
+                                {% csrf_token %}
+                                <button type="submit" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-red-50 group transition-colors">
+                                    <p class="text-sm font-semibold text-red-600 group-hover:text-red-700">Cerrar Sesión</p>
+                                    <p class="text-xs text-red-400 mt-0.5">Salir de tu cuenta de forma segura en este equipo.</p>
+                                </button>
+                            </form>
+
+                        </div>
                     </div>
-                    <form action="{% url 'logout' %}" method="POST" class="m-0">
-                        {% csrf_token %}
-                        <button class="text-sm font-medium text-slate-500 hover:text-red-600 transition-colors">
-                            Cerrar sesión
-                        </button>
-                    </form>
+
                 {% else %}
                     <a href="{% url 'login' %}" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Iniciar sesión</a>
                     <a href="{% url 'register' %}" class="text-sm font-medium bg-slate-900 text-white px-4 py-2 rounded-lg hover:bg-slate-800 transition-all shadow-sm">
