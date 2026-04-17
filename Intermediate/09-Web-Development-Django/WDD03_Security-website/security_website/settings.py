@@ -82,6 +82,17 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Forzamos verificación
 SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_QUERY_EMAIL = True
 
+# ==========================================
+# CONFIGURACIÓN DE SESIONES Y "RECORDARME"
+# ==========================================
+# None = El usuario decide usando el checkbox del formulario
+# True = Siempre recuerda (ignora el checkbox)
+# False = Nunca recuerda (ignora el checkbox)
+ACCOUNT_SESSION_REMEMBER = None 
+
+# Tiempo que dura la sesión guardada (Ej: 2 semanas en segundos)
+SESSION_COOKIE_AGE = 1209600
+
 # Adapter personalizado
 SOCIALACCOUNT_ADAPTER = 'accounts.adapter.MySocialAccountAdapter'
 
