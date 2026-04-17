@@ -1,21 +1,54 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="w-full max-w-md mx-auto">
+<div class="max-w-md mx-auto w-full px-4 mt-8">
     <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-        <div class="text-center mb-8">
-            <h2 class="text-2xl font-extrabold text-slate-900">Generar Códigos</h2>
-            <p class="text-sm text-slate-500 mt-2">Esta acción invalidará tus códigos anteriores.</p>
-        </div>
+        
+        {% if recovery_codes %}
+            <h2 class="text-2xl font-bold text-slate-900 text-center mb-2">Tus Nuevos Códigos</h2>
+            <div class="bg-amber-50 border border-amber-200 p-4 rounded-lg mb-6 text-center">
+                <p class="text-sm text-amber-800 font-medium">¡Cópialos o descárgalos ahora! Esta es la única vez que los verás.</p>
+            </div>
 
-        <form method="POST">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button type="submit" class="w-full bg-blue-600 text-white font-medium py-2.5 rounded-lg mt-4 hover:bg-blue-700 transition-all">
-                Generar nuevos códigos
-            </button>
-        </form>
+            <div class="bg-slate-50 p-4 rounded-lg font-mono text-center text-lg tracking-widest mb-6 border border-slate-200">
+                {% for code in recovery_codes %}
+                    {{ code }}<br>
+                {% endfor %}
+            </div>
+
+            <a href="{% url 'mfa_download_recovery_codes' %}" class="w-full bg-slate-800 text-white font-medium py-3 rounded-lg hover:bg-slate-900 transition-all mb-4 flex justify-center items-center gap-2">
+                Descargar Códigos (.txt)
+            </a>
+
+            <div class="mt-6 text-center border-t border-slate-100 pt-4">
+                <a href="{% url 'mfa_index' %}" class="text-blue-600 hover:underline font-medium">Finalizar y volver al Panel</a>
+            </div>
+
+        {% else %}
+            <h2 class="text-2xl font-bold text-slate-900 text-center mb-2">¿Generar nuevos códigos?</h2>
+            <div class="bg-red-50 p-4 rounded-lg mb-6 border border-red-100">
+                <p class="text-sm text-red-800 text-center leading-relaxed">
+                    <strong>Advertencia:</strong> Al generar un nuevo conjunto, todos tus códigos de recuperación anteriores dejarán de funcionar.
+                </p>
+            </div>
+
+            <form method="post" action="{% url 'mfa_generate_recovery_codes' %}" class="space-y-4">
+                {% csrf_token %}
+                {% if form %}
+                    {{ form|crispy }}
+                {% endif %}
+                
+                <button type="submit" class="w-full bg-red-600 text-white font-medium py-2.5 rounded-lg hover:bg-red-700 transition-all">
+                    Sí, Generar Nuevos Códigos
+                </button>
+                
+                <a href="{% url 'mfa_view_recovery_codes' %}" class="block w-full text-center text-slate-600 font-medium py-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 transition-all mt-3">
+                    Cancelar
+                </a>
+            </form>
+        {% endif %}
+
     </div>
 </div>
 {% endblock %}

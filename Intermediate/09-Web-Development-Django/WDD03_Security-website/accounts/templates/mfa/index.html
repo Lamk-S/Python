@@ -1,46 +1,62 @@
 {% extends "base.html" %}
-{% load i18n %}
 
 {% block content %}
-<div class="max-w-2xl mx-auto w-full px-4">
+<div class="max-w-2xl mx-auto w-full px-4 mt-8">
     <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-        <h2 class="text-2xl font-bold text-slate-900 mb-6">Autenticación de Dos Factores (2FA)</h2>
-        
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">Seguridad de la Cuenta (2FA)</h2>
+
         <div class="space-y-6">
-            {% for authenticator in authenticators %}
-                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="p-5 rounded-xl border border-slate-200 bg-slate-50">
+                <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <div class="bg-blue-100 p-2 rounded-lg text-blue-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
                         </div>
                         <div>
-                            <p class="font-semibold text-slate-800">Aplicación de Autenticación (TOTP)</p>
-                            <p class="text-xs text-slate-500">Configurado y activo</p>
+                            <h3 class="font-bold text-slate-900">Aplicación de Autenticación (TOTP)</h3>
+                            <p class="text-xs text-slate-500">Google Authenticator, Authy, etc.</p>
                         </div>
                     </div>
-                    <a href="{% url 'mfa_deactivate_totp' %}" class="text-sm text-red-600 font-medium hover:underline">Desactivar</a>
+                    {% if authenticators.totp %}
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Activo</span>
+                    {% else %}
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-200 text-slate-600">No configurado</span>
+                    {% endif %}
                 </div>
-            {% empty %}
-                <div class="text-center py-6">
-                    <p class="text-slate-500 mb-6">No tienes configurada la autenticación de dos factores. Te recomendamos activarla para proteger tu cuenta.</p>
-                    <a href="{% url 'mfa_activate_totp' %}" class="bg-blue-600 text-white px-6 py-2.5 rounded-lg hover:bg-blue-700 font-medium transition-colors">
-                        Configurar Aplicación de Autenticación
-                    </a>
-                </div>
-            {% endfor %}
 
-            {% if authenticators %}
-                <hr class="border-slate-100">
-                <div>
-                    <h3 class="font-bold text-slate-900 mb-2 text-sm uppercase tracking-wider">Códigos de Recuperación</h3>
-                    <p class="text-sm text-slate-500 mb-4">Usa estos códigos si pierdes acceso a tu aplicación de autenticación.</p>
-                    <a href="{% url 'mfa_view_recovery_codes' %}" class="text-sm text-blue-600 font-medium hover:underline">Ver códigos de recuperación &rarr;</a>
+                {% if authenticators.totp %}
+                    <a href="{% url 'mfa_deactivate_totp' %}" class="text-sm text-red-600 hover:text-red-700 font-medium">Desactivar aplicación</a>
+                {% else %}
+                    <a href="{% url 'mfa_activate_totp' %}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all">Configurar aplicación</a>
+                {% endif %}
+            </div>
+
+            <div class="p-5 rounded-xl border border-slate-200 bg-slate-50">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-amber-100 p-2 rounded-lg text-amber-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Códigos de Recuperación</h3>
+                        <p class="text-xs text-slate-500">Usa estos códigos si pierdes acceso a tu móvil.</p>
+                    </div>
                 </div>
-            {% endif %}
+                
+                {% if authenticators.recovery_codes %}
+                    <a href="{% url 'mfa_view_recovery_codes' %}" class="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1">
+                        Ver códigos de recuperación <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                {% else %}
+                    <p class="text-sm text-slate-400 italic">Debes activar TOTP primero.</p>
+                {% endif %}
+            </div>
         </div>
-        
-        <div class="mt-10 pt-6 border-t border-slate-100">
-            <a href="{% url 'home' %}" class="text-slate-500 text-sm hover:text-slate-800">&larr; Volver al Dashboard</a>
+
+        <div class="mt-8 pt-6 border-t border-slate-100">
+            <a href="/" class="text-sm text-slate-500 hover:text-slate-800 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Volver al Dashboard
+            </a>
         </div>
     </div>
 </div>
