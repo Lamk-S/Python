@@ -11,13 +11,6 @@
             <img src="{{ totp_svg_data_uri }}" alt="QR Code" class="w-48 h-48">
         </div>
 
-        <div class="bg-blue-50 p-4 rounded-lg mb-8">
-            <p class="text-xs text-blue-800 leading-relaxed">
-                <strong>¿No puedes escanearlo?</strong> Introduce esta clave manualmente en tu app:<br>
-                <code class="font-bold text-sm bg-white px-2 py-1 rounded mt-1 inline-block">{{ form.secret.value }}</code>
-            </p>
-        </div>
-
         <form method="post" class="space-y-4">
             {% csrf_token %}
             {{ form|crispy }}
