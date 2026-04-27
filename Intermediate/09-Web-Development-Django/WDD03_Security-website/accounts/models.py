@@ -7,3 +7,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class LoginHistory(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='login_history')
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    user_agent = models.CharField(max_length=255, null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-timestamp'] # Ordena del más reciente al más antiguo
+
+    def __str__(self):
+        return f"{self.user.username} - {self.timestamp.strftime('%Y-%m-%d %H:%M')}"
