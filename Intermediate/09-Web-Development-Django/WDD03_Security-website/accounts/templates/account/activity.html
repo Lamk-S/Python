@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto w-full px-4">
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+        <div class="mb-6 flex items-center justify-between">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">Historial de Actividad</h2>
+                <p class="text-sm text-slate-500 mt-1">Revisa tus últimos inicios de sesión para detectar accesos inusuales.</p>
+            </div>
+            <div class="bg-blue-50 p-3 rounded-full text-blue-600 hidden sm:block">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+        </div>
+
+        {% if logins %}
+            <div class="overflow-x-auto rounded-xl border border-slate-200">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-500 tracking-wider">
+                            <th class="p-4 font-semibold">Fecha y Hora</th>
+                            <th class="p-4 font-semibold">Dirección IP</th>
+                            <th class="p-4 font-semibold">Dispositivo / Navegador</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-sm">
+                        {% for login in logins %}
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4 text-slate-800 font-medium whitespace-nowrap">
+                                    {{ login.timestamp|date:"d M Y - H:i" }}
+                                    {% if forloop.first %}
+                                        <span class="ml-2 bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Actual</span>
+                                    {% endif %}
+                                </td>
+                                <td class="p-4 text-slate-600 font-mono text-xs">
+                                    {{ login.ip_address|default:"Desconocida" }}
+                                </td>
+                                <td class="p-4 text-slate-500">
+                                    <span class="truncate block max-w-xs md:max-w-md" title="{{ login.user_agent }}">
+                                        {{ login.user_agent|default:"Desconocido" }}
+                                    </span>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="text-center py-8 bg-slate-50 rounded-xl border border-slate-200">
+                <p class="text-sm text-slate-500">Aún no hay registros de actividad. Aparecerán aquí en tu próximo inicio de sesión.</p>
+            </div>
+        {% endif %}
+
+        <div class="mt-8 pt-6 border-t border-slate-100">
+            <a href="{% url 'home' %}" class="text-sm text-slate-500 hover:text-slate-800 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Volver al Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
