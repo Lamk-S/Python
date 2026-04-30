@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto w-full px-4">
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+        
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-900">Configuración del Perfil</h2>
+            <p class="text-sm text-slate-500 mt-1">Actualiza tu información personal y foto de presentación.</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-10">
+            <div class="w-full md:w-1/3 flex flex-col items-center">
+                <div class="w-40 h-40 rounded-full border-4 border-slate-50 shadow-md overflow-hidden bg-slate-100 flex items-center justify-center mb-4">
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar }}" alt="Avatar" class="w-full h-full object-cover">
+                    {% else %}
+                        <span class="text-5xl font-bold text-slate-300">{{ user.username|make_list|first|upper }}</span>
+                    {% endif %}
+                </div>
+                <h3 class="font-bold text-slate-800 text-lg">@{{ user.username }}</h3>
+                <p class="text-sm text-slate-500">{{ user.email }}</p>
+                
+                <div class="mt-4 px-4 py-2 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg text-center w-full">
+                    Usuario Autenticado
+                </div>
+            </div>
+
+            <div class="w-full md:w-2/3">
+                <form method="POST" class="space-y-4">
+                    {% csrf_token %}
+                    
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                        <h4 class="font-semibold text-slate-700 mb-4 text-sm uppercase tracking-wider">Datos Personales</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {{ u_form|crispy }}
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                        <h4 class="font-semibold text-slate-700 mb-4 text-sm uppercase tracking-wider">Apariencia</h4>
+                        {{ p_form|crispy }}
+                        <p class="text-xs text-slate-500 mt-2">Pega la dirección URL de una imagen para actualizar tu foto.</p>
+                    </div>
+
+                    <div class="pt-4 flex items-center gap-4">
+                        <button type="submit" class="bg-blue-600 text-white font-medium py-2.5 px-6 rounded-lg hover:bg-blue-700 transition-all shadow-sm">
+                            Guardar Cambios
+                        </button>
+                        <a href="{% url 'home' %}" class="text-sm text-slate-500 hover:text-slate-800 font-medium">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
