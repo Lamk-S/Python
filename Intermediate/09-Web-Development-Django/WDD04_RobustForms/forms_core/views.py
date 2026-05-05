@@ -13,7 +13,7 @@ def procesar_pago_view(request):
             monto = form.cleaned_data['monto']
             numero_tarjeta = form.cleaned_data['numero_tarjeta']
             
-            # REGLA DE ORO: Solo se guaradará los últimos 4 dígitos
+            # Solo se guaradará los últimos 4 dígitos
             ultimos_digitos = numero_tarjeta[-4:]
             
             # Guardar la transacción en la base de datos
