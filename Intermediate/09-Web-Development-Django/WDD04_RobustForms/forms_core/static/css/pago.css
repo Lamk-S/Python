@@ -1,0 +1,140 @@
+:root {
+    /* Paleta Profesional (Fintech Style) */
+    --bg-app: #e2e8f0; /* Gris azulado muy claro para el fondo */
+    --form-bg: #ffffff;
+    --text-primary: #1e293b;
+    --input-border: #cbd5e1;
+    --input-focus: #2563eb;
+    
+    /* Gradientes Corporativos para la Tarjeta */
+    --card-gradient: linear-gradient(135deg, #0f172a 0%, #334155 100%); /* Pizarra oscuro / Negro */
+    --card-gradient-active: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); /* Azul Financiero */
+}
+
+body { 
+    background-color: var(--bg-app); 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+}
+
+/* -------------------------------------
+   Diseño de Superposición (Overlap)
+-------------------------------------- */
+.checkout-wrapper {
+    position: relative;
+    max-width: 480px;
+    margin: 120px auto 50px; /* 120px arriba para dejar espacio a la tarjeta que sobresale */
+}
+
+.card-wrapper {
+    position: absolute;
+    top: -90px; /* Sube la tarjeta fuera del formulario */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%; /* Ligeramente más estrecha que el formulario para efecto 3D */
+    z-index: 10;
+    perspective: 1000px;
+}
+
+.form-container {
+    background: var(--form-bg);
+    padding: 140px 40px 40px; /* Mucho padding arriba para empujar los inputs debajo de la tarjeta */
+    border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* Sombra difuminada moderna */
+}
+
+/* -------------------------------------
+   Estilos de la Tarjeta
+-------------------------------------- */
+.credit-card {
+    width: 100%;
+    height: 230px;
+    border-radius: 16px;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Giro más natural */
+    transform-style: preserve-3d;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    position: relative;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    background: var(--card-gradient);
+}
+
+.credit-card.flipped { 
+    transform: rotateY(180deg); 
+    background: var(--card-gradient-active); 
+}
+
+.card-front, .card-back {
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    position: absolute;
+    top: 0; left: 0;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-back { transform: rotateY(180deg); padding: 0; }
+
+.card-type-icon { position: absolute; top: 20px; right: 25px; font-size: 2.5rem; opacity: 0.9; }
+
+/* Chip Estilizado */
+.chip { 
+    width: 50px; 
+    height: 40px; 
+    background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%); 
+    border-radius: 8px; 
+    position: relative;
+    overflow: hidden;
+}
+.chip::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 20px;
+    height: 100%; width: 1px;
+    background: rgba(0,0,0,0.2);
+    box-shadow: 10px 0 0 rgba(0,0,0,0.2);
+}
+
+.card-number-display { font-size: 1.6rem; letter-spacing: 3px; margin-top: 20px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);}
+.card-label { font-size: 0.65rem; text-transform: uppercase; opacity: 0.7; letter-spacing: 1px; font-family: sans-serif;}
+.card-holder-display { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+
+.magnetic-stripe { width: 100%; height: 50px; background-color: #000; margin-top: 30px; }
+.signature-area { width: 85%; height: 45px; background-color: #f8f9fa; margin: 15px auto; color: #333; text-align: right; padding: 0 15px; display: flex; align-items: center; justify-content: flex-end; border-radius: 4px;}
+.cvv-display { background-color: white; color: #000; padding: 4px 10px; font-family: 'Courier New', monospace; font-weight: bold; font-size: 1.2rem;}
+
+/* -------------------------------------
+   Estilos de los Inputs y Botón
+-------------------------------------- */
+.custom-input {
+    border: 1px solid var(--input-border);
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background-color: #f8fafc;
+}
+.custom-input:focus {
+    background-color: #ffffff;
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.btn-pay { 
+    background-color: var(--input-focus); 
+    color: white;
+    border: none; 
+    padding: 15px 25px;
+    border-radius: 12px;
+    font-weight: 600; 
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+.btn-pay:hover { 
+    background-color: #1d4ed8; 
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+    color: white;
+}

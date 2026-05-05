@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RobustForms</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Archivo CSS Externo -->
+    <link rel="stylesheet" href="{% static 'css/pago.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <!-- Contenedor Principal (Centrado y ajustado) -->
+    <div class="checkout-wrapper">
+        
+        <!-- Tarjeta Flotante (Superpuesta) -->
+        <div class="card-wrapper" id="cardWrapper">
+            <div class="credit-card" id="creditCardVisual">
+                <!-- Frente -->
+                <div class="card-front">
+                    <i class="bi bi-credit-card-2-front card-type-icon" id="cardTypeIcon"></i>
+                    <div>
+                        <div class="chip"></div>
+                        <div class="card-number-display" id="displayNumber">**** **** **** ****</div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <div>
+                            <div class="card-label">Titular de la tarjeta</div>
+                            <div class="card-holder-display" id="displayName">NOMBRE COMPLETO</div>
+                        </div>
+                        <div class="text-end">
+                            <div class="card-label">Válido hasta</div>
+                            <div id="displayExpiry" style="font-size: 1rem; letter-spacing: 1px;">MM/AA</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reverso -->
+                <div class="card-back">
+                    <div class="magnetic-stripe"></div>
+                    <div class="signature-area">
+                        <span class="card-label text-dark me-2">CVV</span>
+                        <span class="cvv-display" id="displayCVV">***</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor del Formulario Blanco -->
+        <div class="form-container">
+            
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show mt-3">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST" novalidate id="paymentForm">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="{{ form.numero_tarjeta.id_for_label }}" class="form-label text-uppercase text-muted small fw-bold">Número de Tarjeta</label>
+                    <input type="text" name="numero_tarjeta" id="id_numero_tarjeta" class="form-control custom-input {% if form.numero_tarjeta.errors %}is-invalid{% endif %}" placeholder="0000 0000 0000 0000" inputmode="numeric" maxlength="19" value="{{ form.numero_tarjeta.value|default:'' }}" required>
+                    {% if form.numero_tarjeta.errors %}<div class="invalid-feedback">{{ form.numero_tarjeta.errors.0 }}</div>{% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.titular.id_for_label }}" class="form-label text-uppercase text-muted small fw-bold">Nombre del Titular</label>
+                    <input type="text" name="titular" id="id_titular" class="form-control custom-input {% if form.titular.errors %}is-invalid{% endif %}" placeholder="Nombre completo" value="{{ form.titular.value|default:'' }}" required>
+                    {% if form.titular.errors %}<div class="invalid-feedback">{{ form.titular.errors.0 }}</div>{% endif %}
+                </div>
+
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <label for="{{ form.fecha_expiracion.id_for_label }}" class="form-label text-uppercase text-muted small fw-bold">Vencimiento</label>
+                        <input type="text" name="fecha_expiracion" id="id_fecha_expiracion" class="form-control custom-input {% if form.fecha_expiracion.errors %}is-invalid{% endif %}" placeholder="MM/AA" maxlength="5" value="{{ form.fecha_expiracion.value|default:'' }}" required>
+                        {% if form.fecha_expiracion.errors %}<div class="invalid-feedback">{{ form.fecha_expiracion.errors.0 }}</div>{% endif %}
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="{{ form.cvv.id_for_label }}" class="form-label text-uppercase text-muted small fw-bold">CVV</label>
+                        <input type="password" name="cvv" id="id_cvv" class="form-control custom-input {% if form.cvv.errors %}is-invalid{% endif %}" placeholder="***" maxlength="4" required>
+                        {% if form.cvv.errors %}<div class="invalid-feedback">{{ form.cvv.errors.0 }}</div>{% endif %}
+                    </div>
+                </div>
+
+                <div class="mb-4 mt-3">
+                    <label for="{{ form.monto.id_for_label }}" class="form-label text-uppercase text-muted small fw-bold">Monto a Pagar</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white text-muted" style="border-color: var(--input-border);"><i class="bi bi-currency-dollar"></i></span>
+                        <input type="number" step="0.01" name="monto" id="id_monto" class="form-control custom-input border-start-0 ps-1 {% if form.monto.errors %}is-invalid{% endif %}" placeholder="0.00" value="{{ form.monto.value|default:'' }}" required>
+                    </div>
+                    {% if form.monto.errors %}<div class="text-danger small mt-1">{{ form.monto.errors.0 }}</div>{% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-pay w-100 mt-2 d-flex justify-content-between align-items-center">
+                    <span>Procesar Pago Seguro</span>
+                    <!-- Le agregamos el ID 'btnAmountDisplay' para conectarlo con JS -->
+                    <span class="fs-5 fw-bold" id="btnAmountDisplay">$ {{ form.monto.value|default:'0.00' }}</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Archivo JS Externo (Se mantiene igual) -->
+<script src="{% static 'js/pago.js' %}"></script>
+
+</body>
+</html>
