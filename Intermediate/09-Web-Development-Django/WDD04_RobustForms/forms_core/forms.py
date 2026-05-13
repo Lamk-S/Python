@@ -2,6 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from datetime import datetime
 import re
+from .validators import validar_algoritmo_luhn
 
 class PagoForm(forms.Form):
     titular = forms.CharField(max_length=100)
@@ -13,11 +14,15 @@ class PagoForm(forms.Form):
     # Validación Nivel 2: Solo números en la tarjeta
     def clean_numero_tarjeta(self):
         data = self.cleaned_data.get('numero_tarjeta')
-        num_limpio = data.replace(' ', '')
+        num_limpio = data.replace(' ', '') 
+
         if not num_limpio.isdigit():
             raise ValidationError("El número de tarjeta debe contener únicamente dígitos.")
+        
         if len(num_limpio) != 16:
             raise ValidationError("El número de tarjeta debe tener 16 dígitos.")
+
+        validar_algoritmo_luhn(num_limpio)
 
         return num_limpio
 
