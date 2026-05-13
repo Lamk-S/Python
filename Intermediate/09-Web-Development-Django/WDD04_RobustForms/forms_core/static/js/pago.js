@@ -63,4 +63,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    const paymentForm = document.getElementById('paymentForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnContent = document.getElementById('btnContent');
+    const btnLoading = document.getElementById('btnLoading');
+
+    if (paymentForm && submitBtn) {
+        paymentForm.addEventListener('submit', (e) => {
+            if (paymentForm.checkValidity()) {
+                submitBtn.disabled = true;
+                submitBtn.style.cursor = 'wait';
+                
+                btnContent.classList.add('d-none');
+                btnContent.classList.remove('d-flex');
+                btnLoading.classList.remove('d-none');
+            }
+        });
+    }
 });
