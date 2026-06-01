@@ -11,3 +11,14 @@ def listar_empleados(request):
     }
     
     return render(request, 'empleados/listar_empleados.html', context)
+
+def enviar_correo(request):
+    if request.method == 'POST':
+        form = EnviarCorreoForm(request.POST)
+        if form.is_valid():
+            asunto = form.cleaned_data['asunto']
+            mensaje = form.cleaned_data['mensaje']
+            correo_destino = request.POST.get('correo')
+            send_mail(asunto, mensaje, 'kunlancelot@gmail.com', [correo_destino])
+            return JsonResponse({'status': 'success', 'message': 'Correo enviado exitosamente'})
+    return JsonResponse({'status': 'error', 'message': 'Error al enviar el correo'})
