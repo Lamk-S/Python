@@ -23,9 +23,31 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'api',
+    'rest_framework', # Para construir la API
+    'drf_spectacular', # Para la documentación de la API
+    "drf_spectacular_sidecar", # Para servir los archivos estáticos de la documentación
+    'api', # Nuestra aplicación de la API
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "API de Productos",
+    "DESCRIPTION": "Documentación automática de la API de Productos",
+    "VERSION": "1.0.0",
+    "CONTACT": {
+        "name": "Lancelot",
+        "email": "kunlancelot@gmail.com",
+    },
+    "LICENSE": {
+        "name": "MIT",
+    },
+    "SWAGGER_UI_DIST": "SIDECAR",
+    "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
+    "REDOC_DIST": "SIDECAR",
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
