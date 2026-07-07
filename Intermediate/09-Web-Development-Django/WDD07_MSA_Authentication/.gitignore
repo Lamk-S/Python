@@ -1,0 +1,28 @@
+# Ambientes virtuales
+venv/
+env/
+.venv/
+.env_dir/
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Base de datos SQLite local (¡Nunca subir bases de datos con información!)
+db.sqlite3
+db.sqlite3-journal
+
+# Variables de entorno y secretos
+.env
+.env.local
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Configuración de editores (VS Code, PyCharm, etc.)
+.vscode/
+.idea/
+*.swp
+*.swo
