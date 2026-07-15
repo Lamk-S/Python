@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Dell XPS 13",
+        "price": 1299.99,
+        "brand": "Dell",
+        "processor": "Intel Core Ultra 7"
+    },
+    {
+        "name": "MacBook Air 15",
+        "price": 1499.0,
+        "brand": "Apple",
+        "processor": "Apple M3"
+    },
+    {
+        "name": "HP Spectre x360 14",
+        "price": 1399.99,
+        "brand": "HP",
+        "processor": "Intel Core Ultra 7"
+    },
+    {
+        "name": "ASUS ROG Zephyrus G14",
+        "price": 1799.99,
+        "brand": "ASUS",
+        "processor": "AMD Ryzen 9 8945HS"
+    },
+    {
+        "name": "MacBook Pro 16",
+        "price": 3499.0,
+        "brand": "Apple",
+        "processor": "Apple M4 Max"
+    }
+]
