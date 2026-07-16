@@ -1,0 +1,11 @@
+marca;modelo;año;color;combustible;transmision;puertas;precio_usd;kilometraje
+Toyota;Corolla;2022;Blanco;Gasolina;Automática;4;22500;18000
+Honda;Civic;2021;Negro;Gasolina;Manual;4;21000;25000
+Ford;Focus;2020;Azul;Diésel;Manual;4;17500;40000
+Chevrolet;Cruze;2019;Gris;Gasolina;Automática;4;16000;52000
+Nissan;Sentra;2023;Rojo;Gasolina;CVT;4;24500;8000
+Hyundai;Elantra;2022;Plata;Híbrido;Automática;4;23800;15000
+Kia;Forte;2021;Blanco;Gasolina;Automática;4;19800;27000
+Volkswagen;Golf;2020;Azul;Diésel;Manual;5;20500;36000
+Mazda;Mazda3;2023;Negro;Gasolina;Automática;4;26500;6000
+Subaru;Impreza;2022;Verde;Gasolina;CVT;5;25500;12000
