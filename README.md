@@ -1,107 +1,95 @@
 # Apuntes del Curso de Python
 
-Repositorio personal donde documento mi proceso de aprendizaje de Python, desde fundamentos hasta desarrollo de aplicaciones. Contiene apuntes teóricos, ejemplos de código y ejercicios prácticos organizados por niveles de dificultad.
+Repositorio personal donde documento mi proceso de aprendizaje de Python desde cero hasta desarrollo web y análisis de datos. Contiene apuntes teóricos, ejercicios prácticos, notebooks, GUIs y proyectos Django, organizados por niveles de dificultad.
 
-Este repositorio sirve como material de estudio, consulta y como base para futuros proyectos.
+Funciona como bitácora de aprendizaje, material de consulta y portafolio técnico.
 
 ## Objetivo del repositorio
 
-- Consolidar bases sólidas de Python y buenas prácticas de programación.
-- Mantener un historial ordenado y versionado de mi progreso.
-- Crear un recurso reutilizable para consulta y práctica.
-- Evolucionar de scripts básicos a proyectos completos.
+- Consolidar fundamentos de Python con buenas prácticas y PEP8.
+- Pasar de scripts básicos a código modular, POO y manejo de errores.
+- Desarrollar interfaces gráficas y aplicaciones web con Django.
+- Especializarse en análisis y visualización de datos con Pandas y Seaborn.
+- Mantener un historial ordenado, versionado y reutilizable.
 
 ## Estructura del repositorio
 
 ```
 Python/
-├── Basic/              # Fundamentos del lenguaje
-├── Intermediate/       # Programación intermedia y proyectos
-├── Advanced/           # Temas avanzados y arquitecturas
-├── requirements.txt    # Dependencias (si aplica)
+├── Basic/
+│   ├── 00-HelloWorld.py -> 22-BreakContinue.py (Fundamentos)
+│   ├── Basic-Exercises/ (001 a 008 + ventas.csv)
+│   ├── Break-Continue/
+│   ├── Conditionals/
+│   ├── File-Handling/
+│   └── Initial-Challenge/
+├── Intermediate/
+│   ├── 01-Lists/
+│   ├── 02-Tuples-Dictionaries/
+│   ├── 03-Sets/
+│   ├── 04-Functions/
+│   ├── 05-Modules-Packages/
+│   ├── 06-POO/
+│   ├── 07-Exceptions-ErrorHandling/
+│   ├── 08-GUI-Tkinter/
+│   └── 09-Web-Development-Django/
+├── Advanced/
+│   ├── 01-Pandas/
+│   ├── 02-Data-Manipulation/
+│   ├── 03-Data-Import-Export/
+│   ├── 04-Data-Visualization-With-Pandas/
+│   └── 05-Matplotlib-And-Seaborn/
 └── README.md
 ```
 
-## Contenido por niveles
+## Tecnologías y librerías
 
-### 1. Basic
-Enfocado en la sintaxis y lógica base de Python.
-- Tipos de datos, variables y operadores
-- Estructuras de control: condicionales y bucles
-- Funciones y alcance
-- Estructuras de datos: listas, tuplas, diccionarios, sets
-- Manejo básico de errores
+- **Lenguaje:** Python 3.10+
+- **Fundamentos:** PEP8, manejo de archivos, lógica
+- **Intermedio:** POO, Tkinter, Qt Designer, manejo de excepciones, SQLite
+- **Web:** Django 6.x, python-dotenv
+- **Datos:** Pandas, NumPy, Matplotlib, Seaborn, SQLAlchemy, PyMySQL, openpyxl
+- **Herramientas:** VS Code, Jupyter Notebook, Git, venv, setuptools, wheel, twine, Colorama, qrcode
 
-### 2. Intermediate
-Enfocado en escritura de código limpio, modular y reutilizable.
-- Programación Orientada a Objetos (POO)
-- Módulos y paquetes
-- Manejo de archivos y excepciones avanzadas
-- Entornos virtuales y gestión de dependencias
-- Principios SOLID y buenas prácticas
-- Desarrollo Web con Django (MVT, Forms, Auth, Email, Security)
-- Creación y publicación de paquetes en PyPI con setuptools, wheel y twine
+## Requisitos e instalación
 
-### 3. Advanced
-Enfocado en rendimiento, arquitectura y herramientas de producción.
-- Programación funcional y decoradores avanzados
-- Concurrencia, threading y async
-- Testing y debugging
-- Bases de datos y ORMs
-- APIs REST
-- Optimización y profiling
-
-## Requisitos
-
-- Python 3.10 o superior
-- VS Code (recomendado)
-- Git
-
-Para los proyectos de Django:
-
-```bash
-python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-## Instalación y uso
-
-1. Clona el repositorio:
+1. Clonar:
 ```bash
 git clone https://github.com/Lamk-S/Python.git
 cd Python
 ```
 
-2. Navega al nivel o proyecto que quieres revisar:
+2. Entorno virtual:
 ```bash
-cd Basic/01-Variables
-python ejemplo.py
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# Linux/Mac
+source venv/bin/activate
 ```
 
-Cada carpeta contiene su propio README con instrucciones específicas cuando es necesario.
+## Convenciones del repositorio
 
-## Convenciones
-
-- Cada tema tiene su carpeta numerada para mantener el orden cronológico.
-- El código está comentado con el objetivo de explicar el porqué, no solo el qué.
-- Se prioriza la legibilidad sobre la complejidad innecesaria.
+- Carpetas numeradas para mantener orden cronológico de aprendizaje.
+- Nomenclatura descriptiva: `L` para Listas, `TD` para Tuples/Dicts, `POO` para clases, `DM` para Data Manipulation, `DIE` para Import/Export, etc.
+- Cada proyecto Django incluye su propio README con setup específico.
+- Notebooks comentados explicando el porqué de cada transformación.
 
 ## Estado del proyecto
 
-En desarrollo activo. El repositorio se actualiza conforme avanzo en el curso. Actualmente se está trabajando en los módulos de nivel intermedio.
+En desarrollo activo.
 
-Roadmap:
-- [x] Fundamentos básicos completados
-- [ ] Finalizar nivel intermedio (Django y empaquetado)
-- [ ] Iniciar nivel avanzado
-- [ ] Añadir tests unitarios a los ejercicios principales
+- [x] Basic - Fundamentos y 8 ejercicios completados
+- [x] Intermediate - Listas a POO, GUI y 7 proyectos Django completados
+- [x] Advanced - Pandas, manipulación, import/export y visualización en progreso
+- [ ] Proyecto final integrador de análisis de datos + visualización
+- [ ] Añadir tests y documentación docstring completa
 
 ## Autor
 
 **Lamk-S**
-GitHub: https://github.com/Lamk-S
+GitHub: https://github.com/Lamk-S/Python
 
 ## Licencia
 
-Este proyecto se distribuye bajo licencia MIT. Libre para uso educativo y personal.
+MIT. Uso libre para fines educativos y personales.
